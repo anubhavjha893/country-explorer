@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* Now your styles */
+:root {
+  --primary: #2563eb;
+  --secondary: #f97316;
+  --bg-light: #f9fafb;
+  --bg-dark: #1f2937;
+  --text-light: #ffffff;
+  --text-dark: #111827;
+  --font: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  margin: 0;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
