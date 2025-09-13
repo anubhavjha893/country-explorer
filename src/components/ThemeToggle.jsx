@@ -11,7 +11,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      style={toggleButtonStyle}
+      className="theme-toggle-button"
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDarkMode ? (
@@ -53,22 +53,6 @@ const ThemeToggle = () => {
       )}
     </button>
   );
-};
-
-const toggleButtonStyle = {
-  background: "none",
-  border: "none",
-  cursor: "pointer",
-  padding: "8px",
-  borderRadius: "50%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "white",
-  transition: "all 0.2s ease",
-  ":hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-  },
 };
 
 export default ThemeToggle;

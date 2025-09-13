@@ -60,20 +60,47 @@ const Quiz = () => {
 
   if (stage === "start") {
     return (
-      <div style={{ padding: 20 }}>
-        <h2>Quiz — Flags</h2>
-        <div style={{ marginTop: 12 }}>
-          <label>Username</label>
-          <input value={username} onChange={e => setUsername(e.target.value)} className="input" placeholder="Your name" />
-        </div>
-        <div style={{ marginTop: 12 }}>
-          <label>Region</label>
-          <select value={region} onChange={e => setRegion(e.target.value)} className="input">
-            {REGIONS.map(r => <option key={r} value={r}>{r}</option>)}
-          </select>
-        </div>
-        <div style={{ marginTop: 12 }}>
-          <button className="btn primary" onClick={begin}>Start Quiz</button>
+      <div className="quiz-start-container">
+        <div className="quiz-start-card">
+          <div className="quiz-header">
+            <h1 className="quiz-title">🏳️ Flag Quiz Challenge</h1>
+            <p className="quiz-subtitle">Test your knowledge of world flags!</p>
+          </div>
+          
+          <div className="quiz-form">
+            <div className="input-group">
+              <label className="input-label">👤 Your Name</label>
+              <input 
+                value={username} 
+                onChange={e => setUsername(e.target.value)} 
+                className="quiz-input" 
+                placeholder="Enter your name here..." 
+                type="text"
+                autoComplete="name"
+              />
+            </div>
+            
+            <div className="input-group">
+              <label className="input-label">🌍 Select Region</label>
+              <select 
+                value={region} 
+                onChange={e => setRegion(e.target.value)} 
+                className="quiz-select"
+              >
+                {REGIONS.map(r => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            </div>
+            
+            <button 
+              className="quiz-start-btn" 
+              onClick={begin}
+              disabled={!username.trim()}
+            >
+              🚀 Start Quiz
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -85,25 +112,69 @@ const Quiz = () => {
     const q = questions[index];
     if (!q) return <Loader />;
     return (
-      <div style={{ padding: 20 }}>
-        <div style={{ marginBottom: 8 }}>Question {index + 1} / {questions.length}</div>
-        <QuizQuestion
-          flag={(q.flags && (q.flags.svg || q.flags.png)) || ""}
-          answer={q.name.common}
-          onAnswer={handleAnswer}
-        />
+      <div className="quiz-running-container">
+        <div className="quiz-progress">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill" 
+              style={{ width: `${((index + 1) / questions.length) * 100}%` }}
+            ></div>
+          </div>
+          <div className="progress-text">
+            Question {index + 1} of {questions.length}
+          </div>
+        </div>
+        
+        <div className="quiz-question-container">
+          <QuizQuestion
+            flag={(q.flags && (q.flags.svg || q.flags.png)) || ""}
+            answer={q.name.common}
+            onAnswer={handleAnswer}
+          />
+        </div>
       </div>
     );
   }
 
   // finished
+  const percentage = Math.round((score / questions.length) * 100);
+  const getScoreMessage = () => {
+    if (percentage >= 90) return "🏆 Outstanding! You're a flag expert!";
+    if (percentage >= 70) return "🎉 Great job! Well done!";
+    if (percentage >= 50) return "👍 Good effort! Keep practicing!";
+    return "💪 Keep learning! You'll get better!";
+  };
+
   return (
-    <div style={{ padding: 20 }}>
-      <h3>Quiz finished</h3>
-      <p>Your score: {score} / {questions.length}</p>
-      <div style={{ marginTop: 12 }}>
-        <button className="btn" onClick={() => { setStage("start"); setQuestions([]); }}>Play again</button>
-        <button className="btn primary" onClick={() => navigate("/leaderboard")}>See leaderboard</button>
+    <div className="quiz-finished-container">
+      <div className="quiz-results-card">
+        <div className="results-header">
+          <h1 className="results-title">🎯 Quiz Complete!</h1>
+          <p className="results-subtitle">{getScoreMessage()}</p>
+        </div>
+        
+        <div className="score-display">
+          <div className="score-circle">
+            <span className="score-number">{score}</span>
+            <span className="score-total">/{questions.length}</span>
+          </div>
+          <div className="score-percentage">{percentage}%</div>
+        </div>
+        
+        <div className="results-actions">
+          <button 
+            className="quiz-btn secondary" 
+            onClick={() => { setStage("start"); setQuestions([]); }}
+          >
+            🔄 Play Again
+          </button>
+          <button 
+            className="quiz-btn primary" 
+            onClick={() => navigate("/leaderboard")}
+          >
+            🏆 View Leaderboard
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -9,32 +9,45 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
+  const navStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "14px 20px",
+    background: "var(--secondary)",
+    color: "var(--text-on-secondary)",
+  };
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
+  const linkStyle = ({ isActive }) => ({
+    color: isActive ? "#87CEEB" : "white", // Light blue when active, white when inactive
+    textDecoration: "none",
+    fontWeight: isActive ? 600 : 400,
+    transition: "color 0.2s ease",
+  });
+ 
   return (
     <>
       <nav style={navStyle}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link to="/" style={logoStyle}>Country Explorer</Link>
+          <Link className="text-white font-bold text-2xl decoration-none" to="/">Country Explorer</Link>
         </div>
 
+
         {/* Desktop Navigation */}
-        <div className="desktop-nav" style={desktopNavStyle}>
+        <div className="desktop-nav hidden lg:flex gap-10 items-center">
           <NavLink to="/" style={linkStyle}>Home</NavLink>
           <NavLink to="/countries" style={linkStyle}>Countries</NavLink>
           <NavLink to="/collection" style={linkStyle}>Collection</NavLink>
           <NavLink to="/quiz" style={linkStyle}>Quiz</NavLink>
           <NavLink to="/leaderboard" style={linkStyle}>Leaderboard</NavLink>
-          <ThemeToggle />
         </div>
-
+        <ThemeToggle />
         {/* Mobile Menu Button */}
+
         <button
-          className="mobile-menu-button"
-          style={mobileMenuButtonStyle}
+          className="mobile-menu-button lg:hidden border-none cursor-pointer p-2 rounded-md transition-background-color ease"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
@@ -61,43 +74,14 @@ const Navbar = () => {
   );
 };
 
-const navStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "14px 20px",
-  background: "var(--secondary)",
-  color: "var(--text-on-secondary)",
-};
 
-const logoStyle = {
-  fontWeight: 700,
-  fontSize: 18,
-  color: "white",
-  textDecoration: "none",
-};
 
-const linkStyle = ({ isActive }) => ({
-  color: isActive ? "#87CEEB" : "white", // Light blue when active, white when inactive
-  textDecoration: "none",
-  fontWeight: isActive ? 600 : 400,
-  transition: "color 0.2s ease",
-});
 
-const desktopNavStyle = {
-  display: "flex",
-  gap: 14,
-  alignItems: "center",
-};
 
-const mobileMenuButtonStyle = {
-  background: "none",
-  border: "none",
-  cursor: "pointer",
-  color: "white",
-  padding: "8px",
-  borderRadius: "4px",
-  transition: "background-color 0.2s ease",
-};
+
+
+
+
+
 
 export default Navbar;
