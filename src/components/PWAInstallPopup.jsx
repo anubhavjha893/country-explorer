@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import MobileInstallGuide from './MobileInstallGuide';
 
 const PWAInstallPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [showMobileGuide, setShowMobileGuide] = useState(false);
 
   useEffect(() => {
     // Check if app is already installed
@@ -77,6 +79,14 @@ const PWAInstallPopup = () => {
     // Don't set dismissed, just hide for now
   };
 
+  const handleMobileGuide = () => {
+    setShowMobileGuide(true);
+  };
+
+  const closeMobileGuide = () => {
+    setShowMobileGuide(false);
+  };
+
   if (!showPopup || isInstalled) {
     return null;
   }
@@ -130,7 +140,16 @@ const PWAInstallPopup = () => {
             Install App
           </button>
         </div>
+        
+        <div className="pwa-popup-mobile-help">
+          <p>Don't see the install option?</p>
+          <button className="pwa-popup-mobile-button" onClick={handleMobileGuide}>
+            📱 Mobile Install Guide
+          </button>
+        </div>
       </div>
+      
+      <MobileInstallGuide isVisible={showMobileGuide} onClose={closeMobileGuide} />
     </div>
   );
 };

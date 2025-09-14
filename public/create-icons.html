@@ -8,9 +8,45 @@
     <p>Right-click and save the images below as the required PWA icon files:</p>
     
     <div style="margin: 20px 0;">
+        <h3>72x72 Icon (Mobile)</h3>
+        <canvas id="icon72" width="72" height="72" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon72', 'icon-72.png')">Download 72x72</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>96x96 Icon (Mobile)</h3>
+        <canvas id="icon96" width="96" height="96" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon96', 'icon-96.png')">Download 96x96</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>128x128 Icon (Mobile)</h3>
+        <canvas id="icon128" width="128" height="128" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon128', 'icon-128.png')">Download 128x128</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>144x144 Icon (Mobile)</h3>
+        <canvas id="icon144" width="144" height="144" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon144', 'icon-144.png')">Download 144x144</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>152x152 Icon (Mobile)</h3>
+        <canvas id="icon152" width="152" height="152" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon152', 'icon-152.png')">Download 152x152</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
         <h3>192x192 Icon</h3>
         <canvas id="icon192" width="192" height="192" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
         <br><button onclick="downloadIcon('icon192', 'icon-192.png')">Download 192x192</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>384x384 Icon (Mobile)</h3>
+        <canvas id="icon384" width="384" height="384" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon384', 'icon-384.png')">Download 384x384</button>
     </div>
     
     <div style="margin: 20px 0;">
@@ -114,7 +150,13 @@
         }
         
         // Create all icons
+        createIcon('icon72', 72);
+        createIcon('icon96', 96);
+        createIcon('icon128', 128);
+        createIcon('icon144', 144);
+        createIcon('icon152', 152);
         createIcon('icon192', 192);
+        createIcon('icon384', 384);
         createIcon('icon512', 512);
         createIcon('maskable192', 192, true);
         createIcon('maskable512', 512, true);

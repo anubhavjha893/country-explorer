@@ -2123,6 +2123,39 @@ select:focus {
   transform: translateY(-1px);
 }
 
+.pwa-popup-mobile-help {
+  text-align: center;
+  padding: 15px 20px 20px 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+}
+
+.pwa-popup-mobile-help p {
+  color: var(--text);
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.pwa-popup-mobile-button {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.pwa-popup-mobile-button:hover {
+  background: var(--hover);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
 /* Mobile responsive */
 @media (max-width: 480px) {
   .pwa-install-popup {
@@ -2135,6 +2168,208 @@ select:focus {
   }
   
   .pwa-popup-button {
+    width: 100%;
+  }
+}
+
+/* ===== MOBILE INSTALL GUIDE STYLES ===== */
+
+.mobile-install-guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mobile-install-guide {
+  background: var(--card-bg);
+  border-radius: 20px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(10, 10, 10, 0.3);
+  border: 1px solid var(--border);
+  animation: slideUp 0.4s ease-out;
+}
+
+.guide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.guide-header h2 {
+  color: var(--text);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.guide-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.guide-close:hover {
+  background: var(--hover);
+}
+
+.guide-content {
+  padding: 0 20px 20px 20px;
+}
+
+.guide-step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.3s ease;
+}
+
+.step-dot.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+.guide-step {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.step-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.step-title {
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+.step-instructions {
+  text-align: left;
+  background: var(--input-bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.instruction {
+  color: var(--text);
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.instruction:last-child {
+  margin-bottom: 0;
+}
+
+.guide-navigation {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.guide-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.guide-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.guide-button-primary {
+  background: linear-gradient(135deg, var(--accent), var(--button-hover));
+  color: white;
+  box-shadow: 0 4px 15px rgba(10, 10, 10, 0.3);
+}
+
+.guide-button-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.4);
+}
+
+.guide-button-secondary {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.guide-button-secondary:hover:not(:disabled) {
+  background: var(--hover);
+  transform: translateY(-1px);
+}
+
+.guide-footer {
+  text-align: center;
+  padding: 15px;
+  background: var(--input-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.guide-footer p {
+  color: var(--text);
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Mobile responsive for guide */
+@media (max-width: 480px) {
+  .mobile-install-guide {
+    margin: 10px;
+    max-height: 90vh;
+  }
+  
+  .guide-navigation {
+    flex-direction: column;
+  }
+  
+  .guide-button {
     width: 100%;
   }
 }
