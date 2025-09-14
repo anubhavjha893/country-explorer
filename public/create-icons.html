@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create PWA Icons</title>
+</head>
+<body>
+    <h2>PWA Icon Generator</h2>
+    <p>Right-click and save the images below as the required PWA icon files:</p>
+    
+    <div style="margin: 20px 0;">
+        <h3>192x192 Icon</h3>
+        <canvas id="icon192" width="192" height="192" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon192', 'icon-192.png')">Download 192x192</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>512x512 Icon</h3>
+        <canvas id="icon512" width="512" height="512" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('icon512', 'icon-512.png')">Download 512x512</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>192x192 Maskable Icon</h3>
+        <canvas id="maskable192" width="192" height="192" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('maskable192', 'icon-192-maskable.png')">Download 192x192 Maskable</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>512x512 Maskable Icon</h3>
+        <canvas id="maskable512" width="512" height="512" style="border: 1px solid #ccc; background: #0a0a0a;"></canvas>
+        <br><button onclick="downloadIcon('maskable512', 'icon-512-maskable.png')">Download 512x512 Maskable</button>
+    </div>
+
+    <script>
+        function createIcon(canvasId, size, isMaskable = false) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, size, size);
+            
+            // For maskable icons, add safe zone
+            if (isMaskable) {
+                const safeZone = size * 0.1; // 10% safe zone
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(safeZone, safeZone, size - 2 * safeZone, size - 2 * safeZone);
+            }
+            
+            // Globe circle
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.4;
+            
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = size * 0.02;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Globe lines
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = size * 0.01;
+            ctx.globalAlpha = 0.6;
+            
+            // Horizontal line
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY, radius * 0.8, radius * 0.4, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Vertical line
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY, radius * 0.4, radius * 0.8, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Flag elements
+            ctx.globalAlpha = 1;
+            const flagSize = size * 0.08;
+            const flagSpacing = size * 0.12;
+            
+            // Top flags
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(centerX - flagSpacing, centerY - radius * 0.6, flagSize, flagSize * 0.8);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(centerX - flagSize/2, centerY - radius * 0.6, flagSize, flagSize * 0.8);
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(centerX + flagSize/2, centerY - radius * 0.6, flagSize, flagSize * 0.8);
+            
+            // Bottom flags
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(centerX - flagSpacing, centerY + radius * 0.4, flagSize, flagSize * 0.8);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(centerX - flagSize/2, centerY + radius * 0.4, flagSize, flagSize * 0.8);
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(centerX + flagSize/2, centerY + radius * 0.4, flagSize, flagSize * 0.8);
+            
+            // Center dot
+            ctx.fillStyle = '#dc2626';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, size * 0.05, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Create all icons
+        createIcon('icon192', 192);
+        createIcon('icon512', 512);
+        createIcon('maskable192', 192, true);
+        createIcon('maskable512', 512, true);
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#dc2626" : "#ffffff",
+    color: isActive ? "var(--accent)" : "var(--text-on-secondary)",
     textDecoration: "none",
     fontWeight: isActive ? 700 : 500,
     textTransform: "uppercase",
@@ -99,10 +99,10 @@ const menuHeaderStyle = {
 const menuTitleStyle = {
   fontSize: "18px",
   fontWeight: "900",
-  color: "#ffffff",
+  color: "var(--text-on-secondary)",
   textTransform: "uppercase",
   letterSpacing: "2px",
-  background: "linear-gradient(135deg, #ffffff, #dc2626)",
+  background: "linear-gradient(135deg, var(--text-on-secondary), var(--accent))",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -112,7 +112,7 @@ const closeButtonStyle = {
   background: "linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.05))",
   border: "1px solid rgba(220, 38, 38, 0.3)",
   cursor: "pointer",
-  color: "#ffffff",
+  color: "var(--text-on-secondary)",
   padding: "8px",
   borderRadius: "6px",
   display: "flex",

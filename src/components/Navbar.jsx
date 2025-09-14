@@ -21,7 +21,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#dc2626" : "#ffffff",
+    color: isActive ? "var(--accent)" : "var(--text-on-secondary)",
     textDecoration: "none",
     fontWeight: isActive ? 700 : 500,
     textTransform: "uppercase",
@@ -46,20 +46,20 @@ const Navbar = () => {
   return (
     <>
       <nav style={navStyle}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Link 
             to="/" 
             style={{
               textDecoration: "none"
             }}
           >
-            <span style={{
-              color: "#ffffff",
-              fontSize: "1.5rem",
+            <span className="mobile-logo" style={{
+              color: "var(--text-on-secondary)",
+              fontSize: "1.2rem",
               fontWeight: "900",
               textTransform: "uppercase",
-              letterSpacing: "2px",
-              background: "linear-gradient(135deg, #ffffff, #dc2626)",
+              letterSpacing: "1.5px",
+              background: "linear-gradient(135deg, var(--text-on-secondary), var(--accent))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

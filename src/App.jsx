@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useAppContext } from "./contexts/useAppContext";
 import Navbar from "./components/Navbar";
 import GlobalLoader from "./components/GlobalLoader";
+import PWAInstallButton from "./components/PWAInstallButton";
 import Home from "./pages/Home";
 import Countries from "./pages/Countries";
 import CountryDetails from "./pages/CountryDetails";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
+          <PWAInstallButton />
         </>
       )}
     </div>

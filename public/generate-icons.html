@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate PWA Icons</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid #ccc;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid #ccc;"></canvas>
+    
+    <script>
+        function createIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Background circle
+            ctx.fillStyle = '#0a0a0a';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 4, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Red border
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+            
+            // Globe lines
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.6;
+            
+            // Horizontal line
+            ctx.beginPath();
+            ctx.ellipse(size/2, size/2, size/3, size/6, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Vertical line
+            ctx.beginPath();
+            ctx.ellipse(size/2, size/2, size/6, size/3, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Flag elements
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = '#dc2626';
+            
+            // Top flags
+            ctx.fillRect(size/2 - size/8, size/2 - size/3, size/12, size/16);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(size/2 - size/16, size/2 - size/3, size/12, size/16);
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(size/2 + size/16, size/2 - size/3, size/12, size/16);
+            
+            // Bottom flags
+            ctx.fillRect(size/2 - size/8, size/2 + size/4, size/12, size/16);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(size/2 - size/16, size/2 + size/4, size/12, size/16);
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(size/2 + size/16, size/2 + size/4, size/12, size/16);
+            
+            // Center dot
+            ctx.fillStyle = '#dc2626';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/16, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Download
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Generate icons
+        createIcon('canvas192', 192);
+        createIcon('canvas512', 512);
+    </script>
+</body>
+</html>
