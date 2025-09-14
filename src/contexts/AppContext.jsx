@@ -13,6 +13,7 @@ export const AppProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(
     JSON.parse(localStorage.getItem("isDarkMode")) ?? true
   );
+  const [isGlobalLoading, setIsGlobalLoading] = useState(true);
 
   // Sync savedCountries with localStorage
   useEffect(() => {
@@ -29,6 +30,19 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
+  // Global loader effect - show loader for minimum 10 seconds
+  useEffect(() => {
+    const startTime = Date.now();
+    const minLoadingTime = 10000; // 10 seconds minimum
+
+    // Simple timer that waits for the minimum time
+    const timer = setTimeout(() => {
+      setIsGlobalLoading(false);
+    }, minLoadingTime);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -40,6 +54,8 @@ export const AppProvider = ({ children }) => {
         setLoading,
         isDarkMode,
         setIsDarkMode,
+        isGlobalLoading,
+        setIsGlobalLoading,
       }}
     >
       {children}

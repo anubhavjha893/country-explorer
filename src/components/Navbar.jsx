@@ -21,17 +21,53 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#87CEEB" : "white", // Light blue when active, white when inactive
+    color: isActive ? "#dc2626" : "#ffffff",
     textDecoration: "none",
-    fontWeight: isActive ? 600 : 400,
-    transition: "color 0.2s ease",
+    fontWeight: isActive ? 700 : 500,
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    fontSize: "0.9rem",
+    padding: "8px 16px",
+    borderRadius: "6px",
+    background: isActive 
+      ? "linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(239, 68, 68, 0.1))" 
+      : "transparent",
+    border: isActive 
+      ? "1px solid rgba(220, 38, 38, 0.5)" 
+      : "1px solid transparent",
+    boxShadow: isActive 
+      ? "0 0 15px rgba(220, 38, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)" 
+      : "none",
+    transition: "all 0.3s ease",
+    position: "relative",
+    overflow: "hidden",
   });
  
   return (
     <>
       <nav style={navStyle}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link className="text-white font-bold text-2xl decoration-none" to="/">Country Explorer</Link>
+          <Link 
+            to="/" 
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            <span style={{
+              color: "#ffffff",
+              fontSize: "1.5rem",
+              fontWeight: "900",
+              textTransform: "uppercase",
+              letterSpacing: "2px",
+              background: "linear-gradient(135deg, #ffffff, #dc2626)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "0 0 10px rgba(220, 38, 38, 0.3)"
+            }}>
+              Country Explorer
+            </span>
+          </Link>
         </div>
 
 

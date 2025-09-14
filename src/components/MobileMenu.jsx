@@ -5,13 +5,22 @@ const MobileMenu = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#87CEEB" : "white",
+    color: isActive ? "#dc2626" : "#ffffff",
     textDecoration: "none",
-    fontWeight: isActive ? 600 : 400,
-    transition: "color 0.2s ease",
+    fontWeight: isActive ? 700 : 500,
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    fontSize: "0.9rem",
+    transition: "all 0.3s ease",
     display: "block",
     padding: "12px 20px",
     borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+    background: isActive 
+      ? "linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(239, 68, 68, 0.1))" 
+      : "transparent",
+    borderLeft: isActive ? "3px solid #dc2626" : "3px solid transparent",
+    position: "relative",
+    overflow: "hidden",
   });
 
   return (
@@ -70,12 +79,13 @@ const overlayStyle = {
 };
 
 const menuStyle = {
-  backgroundColor: "var(--secondary)",
+  background: "linear-gradient(135deg, var(--secondary) 0%, rgba(26, 26, 26, 0.95) 100%)",
   width: "280px",
   height: "100%",
-  boxShadow: "-2px 0 10px rgba(0, 0, 0, 0.3)",
+  boxShadow: "-2px 0 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(220, 38, 38, 0.1)",
   display: "flex",
   flexDirection: "column",
+  backdropFilter: "blur(10px)",
 };
 
 const menuHeaderStyle = {
@@ -88,21 +98,28 @@ const menuHeaderStyle = {
 
 const menuTitleStyle = {
   fontSize: "18px",
-  fontWeight: "600",
-  color: "white",
+  fontWeight: "900",
+  color: "#ffffff",
+  textTransform: "uppercase",
+  letterSpacing: "2px",
+  background: "linear-gradient(135deg, #ffffff, #dc2626)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
 };
 
 const closeButtonStyle = {
-  background: "none",
-  border: "none",
+  background: "linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.05))",
+  border: "1px solid rgba(220, 38, 38, 0.3)",
   cursor: "pointer",
-  color: "white",
-  padding: "4px",
-  borderRadius: "4px",
+  color: "#ffffff",
+  padding: "8px",
+  borderRadius: "6px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  transition: "background-color 0.2s ease",
+  transition: "all 0.3s ease",
+  boxShadow: "0 0 10px rgba(220, 38, 38, 0.2)",
 };
 
 const navStyle = {
