@@ -3,6 +3,7 @@ import { useAppContext } from "./contexts/useAppContext";
 import Navbar from "./components/Navbar";
 import GlobalLoader from "./components/GlobalLoader";
 import PWAInstallButton from "./components/PWAInstallButton";
+import PWAInstallPopup from "./components/PWAInstallPopup";
 import Home from "./pages/Home";
 import Countries from "./pages/Countries";
 import CountryDetails from "./pages/CountryDetails";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
           <PWAInstallButton />
+          <PWAInstallPopup />
         </>
       )}
     </div>

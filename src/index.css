@@ -1970,3 +1970,171 @@ select:focus {
 .theme-toggle-button:hover {
   background-color: var(--hover);
 }
+
+/* ===== PWA INSTALL POPUP STYLES ===== */
+
+.pwa-install-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.pwa-install-popup {
+  background: var(--card-bg);
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(10, 10, 10, 0.2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  animation: slideUp 0.4s ease-out;
+  position: relative;
+}
+
+.pwa-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+}
+
+.pwa-popup-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--button-hover));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(10, 10, 10, 0.3);
+}
+
+.pwa-popup-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.pwa-popup-close:hover {
+  background: var(--hover);
+}
+
+.pwa-popup-content {
+  padding: 20px;
+}
+
+.pwa-popup-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.pwa-popup-description {
+  color: var(--text);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.pwa-popup-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pwa-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.pwa-feature-icon {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+.pwa-popup-actions {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 20px 20px;
+}
+
+.pwa-popup-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pwa-popup-button-primary {
+  background: linear-gradient(135deg, var(--accent), var(--button-hover));
+  color: white;
+  box-shadow: 0 4px 15px rgba(10, 10, 10, 0.3);
+}
+
+.pwa-popup-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.4);
+}
+
+.pwa-popup-button-secondary {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.pwa-popup-button-secondary:hover {
+  background: var(--hover);
+  transform: translateY(-1px);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .pwa-install-popup {
+    margin: 10px;
+    max-width: none;
+  }
+  
+  .pwa-popup-actions {
+    flex-direction: column;
+  }
+  
+  .pwa-popup-button {
+    width: 100%;
+  }
+}
